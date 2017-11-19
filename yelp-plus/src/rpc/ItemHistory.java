@@ -15,7 +15,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import db.MySQLConnection;
+import db.DBConnection;
+import db.DBConnectionFactory;
 import entity.Item;
 
 /**
@@ -42,7 +43,7 @@ public class ItemHistory extends HttpServlet {
 		String userId = request.getParameter("user_id");
 		JSONArray array = new JSONArray();
 
-		MySQLConnection conn = new MySQLConnection();
+		DBConnection conn = DBConnectionFactory.getDBConnection();
 		Set<Item> items = conn.getFavoriteItems(userId);
 		for (Item item : items) {
 			JSONObject obj = item.toJSONObject();
@@ -73,7 +74,7 @@ public class ItemHistory extends HttpServlet {
 				histories.add(itemId);
 			}
 
-			MySQLConnection conn = new MySQLConnection();
+			DBConnection conn = DBConnectionFactory.getDBConnection();
 			conn.setFavoriteItems(userId, histories);
 
 			RpcHelper.writeJsonObject(response, new JSONObject().put("result", "SUCCESS"));
@@ -99,7 +100,7 @@ public class ItemHistory extends HttpServlet {
 				histories.add(itemId);
 			}
 
-			MySQLConnection conn = new MySQLConnection();
+			DBConnection conn = DBConnectionFactory.getDBConnection();
 			conn.unsetFavoriteItems(userId, histories);
 
 			RpcHelper.writeJsonObject(response, new JSONObject().put("result", "SUCCESS"));

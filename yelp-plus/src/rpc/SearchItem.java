@@ -14,9 +14,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import db.MySQLConnection;
+import db.DBConnection;
+import db.DBConnectionFactory;
 import entity.Item;
-import external.YelpAPI;
 
 /**
  * Servlet implementation class SearchItem
@@ -42,7 +42,7 @@ public class SearchItem extends HttpServlet {
 		double lon = Double.parseDouble(request.getParameter("lon"));
 		String term = request.getParameter("term"); // Term can be empty or null.
 
-		MySQLConnection conn = new MySQLConnection();
+		DBConnection conn = DBConnectionFactory.getDBConnection();
 		List<Item> items = conn.searchItems(userId, lat, lon, term);
 		List<JSONObject> list = new ArrayList<>();
 

@@ -7,14 +7,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import db.MySQLConnection;
+import db.DBConnection;
+import db.DBConnectionFactory;
 import entity.Item;
 
 // Recommendation based on geo distance and similar categories.
 public class GeoRecommendation {
 
 	public List<Item> recommendItems(String userId, double lat, double lon) {
-		MySQLConnection conn = new MySQLConnection();
+		DBConnection conn = DBConnectionFactory.getDBConnection();
 
 		// step 1
 		Set<String> favoriteItems = conn.getFavoriteItemIds(userId);

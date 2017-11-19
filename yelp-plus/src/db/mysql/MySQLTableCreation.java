@@ -1,4 +1,4 @@
-package db;
+package db.mysql;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;

@@ -1,4 +1,4 @@
-package db;
+package db.mysql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,11 +9,21 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import db.DBConnection;
 import entity.Item;
 import entity.Item.ItemBuilder;
 import external.YelpAPI;
 
-public class MySQLConnection {
+public class MySQLConnection implements DBConnection {
+	private static MySQLConnection instance;
+
+	public static DBConnection getInstance() {
+		if (instance == null) {
+			instance = new MySQLConnection();
+		}
+		return instance;
+	}
+
 	private Connection conn;
 
 	public MySQLConnection() {
@@ -26,7 +36,8 @@ public class MySQLConnection {
 			e.printStackTrace();
 		}
 	}
-
+	
+	@Override
 	public void close() {
 		if (conn != null) {
 			try {
@@ -37,6 +48,7 @@ public class MySQLConnection {
 		}
 	}
 
+	@Override
 	public void setFavoriteItems(String userId, List<String> itemIds) {
 		if (conn == null) {
 			return;
@@ -54,6 +66,7 @@ public class MySQLConnection {
 		}
 	}
 
+	@Override
 	public void unsetFavoriteItems(String userId, List<String> itemIds) {
 		if (conn == null) {
 			return;
@@ -71,6 +84,7 @@ public class MySQLConnection {
 		}
 	}
 
+	@Override
 	public Set<String> getFavoriteItemIds(String userId) {
 		Set<String> favoriteItems = new HashSet<>();
 		try {
@@ -88,6 +102,7 @@ public class MySQLConnection {
 		return favoriteItems;
 	}
 
+	@Override
 	public Set<Item> getFavoriteItems(String userId) {
 		Set<String> itemIds = getFavoriteItemIds(userId);
 		Set<Item> favoriteItems = new HashSet<>();
@@ -128,6 +143,7 @@ public class MySQLConnection {
 		return favoriteItems;
 	}
 
+	@Override
 	public Set<String> getCategories(String itemId) {
 		if (conn == null) {
 			return null;
@@ -148,6 +164,7 @@ public class MySQLConnection {
 
 	}
 
+	@Override
 	public List<Item> searchItems(String userId, double lat, double lon, String term) {
 		YelpAPI api = new YelpAPI(); // moved here
 		List<Item> items = api.search(lat, lon, term);
@@ -159,6 +176,7 @@ public class MySQLConnection {
 
 	}
 
+	@Override
 	public void saveItem(Item item) {
 		if (conn == null) {
 			return;
@@ -196,6 +214,5 @@ public class MySQLConnection {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 }
