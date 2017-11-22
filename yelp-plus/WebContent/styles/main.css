@@ -5,10 +5,10 @@
 }
 
 body {
-	background: #434343;
+	background: #F3BB43;
 	color: #FFFFFF;
-	font-family: 'Open Sans', sans-serif;
-	font-weight: 300;
+	font-family: 'Ubuntu', sans-serif;
+	font-weight: 400;
 	font-size: 0.9em;
 }
 
@@ -21,7 +21,7 @@ ul {
  */
 .top-header {
 	align-items: center;
-	background: #DF574B;
+	background: #d32323;
 	box-shadow: 0px 2px 10px #333333;
 	display: flex;
 	height: 60px;
@@ -36,7 +36,7 @@ ul {
 	border-radius: 50%;
 	color: #333C4D;
 	height: 40px;
-	margin-right: 20px;
+	margin: 0 10px;
 	padding-left: 9px;
 	padding-top: 5px;
 	width: 40px;
@@ -65,7 +65,7 @@ ul {
  * main container
  */
 .container {
-	margin: 60px auto;
+	margin: 0 auto;
 	max-width: 1000px;
 	min-width: 600px;
 }
@@ -76,7 +76,7 @@ ul {
 .container>header {
 	align-items: center;
 	background:
-		url('http://prophoto.com.cy/wp-content/galleries/food/food-restaurant-photographer-cyprus-10.jpg')
+		url('../images/restaurant.jpg')
 		no-repeat 50% 50%;
 	background-size: 100%;
 	display: flex;
@@ -84,12 +84,13 @@ ul {
 }
 
 .container>header p {
-	border-left: 1px solid #FFFFFF;
+	/* border-left: 1px solid #FFFFFF; */
 	font-weight: 400;
-	font-size: 2em;
+	font-size: 4em;
 	line-height: 1em;
-	margin-left: 220px;
-	padding-left: 5px;
+	color: #FB1F1F;
+	width: 100%;
+	text-align: center;
 }
 
 .container>header span {
@@ -100,7 +101,7 @@ ul {
  * main section
  */
 .main-section {
-	background: #F3BB43;
+	background: #e11f1f;
 }
 
 /**
@@ -197,7 +198,7 @@ ul {
 
 .item-name {
 	color: #624630;
-	font-weight: 400;
+	font-weight: 700;
 	text-decoration: none;
 }
 
@@ -233,10 +234,12 @@ ul {
  * footer section
  */
 footer {
-	background: #434343;
+	background: #34393e;
 	font-size: 0.8em;
 	height: 200px;
 	position: relative;
+	padding: 30px;
+	line-height: 50px;
 }
 
 footer p {
